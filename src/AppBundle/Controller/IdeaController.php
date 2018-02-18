@@ -19,6 +19,11 @@ class IdeaController extends Controller
         return $this->render('@App/ideas.html.twig', compact("ideas"));
     }
 
+    public function ideaAction(IdeaService $ideaService, $id){
+        $idea = $ideaService->getById($id);
+
+        return $this->render("@App/idea.html.twig", compact("idea"));
+    }
     /**
      * @param EntityManagerInterface $em
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -59,6 +64,6 @@ class IdeaController extends Controller
         $idea = $ideaService->getById($id);
         $liked = null !== $request->get('like');
         $voteService->vote($idea, $this->getUser(), $liked);
-        return $this->redirectToRoute('ideas');
+        return $this->redirectToRoute('idea', compact("id"));
     }
 }

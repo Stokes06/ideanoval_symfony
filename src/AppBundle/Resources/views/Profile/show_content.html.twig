@@ -1,6 +1,30 @@
 {% trans_default_domain 'FOSUserBundle' %}
-
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+<h1 class="text-center">Votre profile</h1>
+<!-- messages flash à remplacer par un system de notification -->
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+<!-- ------------------------------------------------------------ -->
+<div class="col-md-offset-3 col-md-9">
+    <div class="row">
+        <div class="fos_user_user_show col-md-6">
+            <div class="row">
+                <div class="col-xs-6"><strong>{{ 'profile.show.username'|trans }}</strong></div>
+                <div class="col-xs-6">{{ user.username }}</div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-6"><strong>{{ 'profile.show.email'|trans }}</strong></div>
+                <div class="col-xs-6">{{ user.email }}</div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div style="margin-top: 30px">
+        <a class="btn btn-primary" href="{{ path('fos_user_profile_edit') }}">Editer</a>
+    </div>
 </div>

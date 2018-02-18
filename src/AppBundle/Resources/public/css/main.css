@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: white;
+}
+.navbar{
+    height: 75px;
+    border-radius: 0!important;
+}
+.navbar .navbar-brand a{
+    font-size: 2em;
+}
+.navbar a{
+    color: #FFF;
+    font-size: 25px;
+}
+.navbar a:hover, .navbar a:focus{
+    text-decoration: none;
+    color: #ef6e44;
+}
+
+h1{
+    margin-bottom: 45px;
+}

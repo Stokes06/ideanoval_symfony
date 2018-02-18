@@ -1,0 +1,39 @@
+{% extends '@App/layout.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ idea.title }}</h2>
+            <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore esse labore laborum reiciendis rerum temporibus. Animi aspernatur, consequatur deserunt eaque earum eligendi, excepturi exercitationem quam repellat rerum similique voluptate voluptatum.</span><span>Aliquid asperiores corporis culpa deserunt ea enim fugit illum iste laudantium magnam molestias nulla odio quaerat quasi quo, reprehenderit repudiandae saepe sed similique tempora. Deserunt eaque necessitatibus nemo suscipit ut?</span><span>A accusamus aliquam animi asperiores atque autem delectus, dolor dolorum est explicabo harum illum ipsa ipsam iusto magni perspiciatis praesentium quaerat quas, quisquam quod saepe, temporibus vero? Dolorem, esse, similique.</span><span>Cum ea illo illum ipsam magni mollitia nam nulla obcaecati quibusdam sequi? Fugit placeat velit voluptas. Ad aliquid cumque doloribus eos iusto molestiae obcaecati quae sed sint sit? A, tempora.</span>
+            </p>
+            <div class="row">
+                <div class="col-xs-6">
+                    <br><br>
+                    <p>publiée par <em>{{ idea.author }}</em> ,  {{ "le " ~ idea.createdAt|date("m/d/Y") ~ " à " ~ idea.createdAt|date("H:i:s")}}</p>
+                </div>
+                <br>
+                <div class="col-xs-4">
+                    <div class="vote">
+                        {# barre de vote complete #}
+                        <div class="vote-bar">
+                            {# barre de vote partielle qui correspond a la partie en verte #}
+                            <div style="width: {{ idea.dislike ==0? '100' : (idea.like/(idea.dislike+idea.like))*100 }}%"
+                                 class="vote-progress"></div>
+                        </div>
+                        {# boutons de vote #}
+                        <div class="btn-vote-grp">
+                            <form action="{{ path('vote') }}" method="post">
+                                <input type="hidden" name="idea_id" value="{{ idea.id }}">
+                                <button name="like"
+                                        class="button-vote votelike {{ previousVote(idea, app.user, true) ? 'active' : '' }}"
+                                        id="like"><i class="far fa-thumbs-up"></i>{{ idea.like }}</button>
+                                <button name="dislike"
+                                        class="button-vote votedislike {{ previousVote(idea, app.user, false) ? 'active' : '' }}"
+                                        id="dislike"><i class="far fa-thumbs-down"></i>{{ idea.dislike }}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
