@@ -1,0 +1,30 @@
+<?php
+
+namespace AppBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Vote
+ * @package AppBundle\Entity
+ * @ORM\Entity()
+ */
+class Vote{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    protected $id;
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     */
+    protected $user;
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Idea")
+     */
+    protected $idea;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $liked;
+}

@@ -1,0 +1,32 @@
+{% extends '@App/layout.html.twig' %}
+
+{% block body %}
+<h1 class="text-center">Listes des meilleurs idées</h1>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for idea in ideas %}
+        <h4>{{ idea.title }}</h4>
+
+    <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet assumenda, eos mollitia perspiciatis tempora. Alias autem blanditiis doloribus expedita explicabo, labore laboriosam nobis odit omnis optio, qui quos, vel.</span><span>Asperiores dolor doloribus ea enim, error expedita nihil nulla quae quam, ratione sint vitae voluptate! Aut dolores earum facilis fugit inventore iure, non optio sint tempora veritatis. Non nulla, officia.</span><span>Cum doloremque ea eligendi id iste iusto, non nostrum praesentium sint voluptatibus! Magnam, optio, quas. Ab consequatur cum enim et eveniet facilis fuga ipsa laboriosam maxime molestias natus, non optio.</span></p>
+    <div class="vote">
+        {# barre de vote complete #}
+        <div class="vote-bar">
+            {# barre de vote partielle qui correspond a la partie en verte #}
+            <div style="width: {{ idea.dislike ==0? '100' : (idea.like/(idea.dislike+idea.like))*100 }}%" class="vote-progress"></div>
+        </div>
+        {# boutons de vote #}
+        <div class="btn-vote-grp">
+            <form action="{{ path('vote') }}" method="post">
+                <input type="hidden" name="idea_id" value="{{ idea.id }}">
+                <button  name="like" class="button-vote votelike {{ previousVote(idea, app.user, true) ? 'active' : '' }}" id="like"><i class="far fa-thumbs-up"></i>{{idea.like}}</button>
+                <button name="dislike" class="button-vote votedislike {{ previousVote(idea, app.user, false) ? 'active' : '' }}" id="dislike"><i class="far fa-thumbs-down"></i>{{ idea.dislike }}</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

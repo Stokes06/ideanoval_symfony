@@ -1,0 +1,32 @@
+:root{
+    --colorlike:  green;
+    --colordislike: red;
+}
+.vote{
+    text-align: right;
+}
+.vote-bar{
+    display: inline-block;
+    height: 4px;
+    width: 150px;
+    background-color: var(--colordislike);
+}
+.vote-progress{
+    background-color: var(--colorlike);
+    height: 4px;
+    width: 0;
+}
+.votelike:hover, .votelike.active{
+    color: var(--colorlike);
+}
+.votedislike:hover, .votedislike.active{
+    color: var(--colordislike);
+}
+.button-vote{
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    margin: 10px 0 0 10px;
+    transition: color 0.3s;
+}
