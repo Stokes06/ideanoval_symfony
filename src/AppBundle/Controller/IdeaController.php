@@ -15,7 +15,7 @@ class IdeaController extends Controller
     public function indexAction(IdeaService $ideaService)
     {
         /** @var Idea[] $ideas */
-        $ideas = $ideaService->getAll();
+        $ideas = $ideaService->getAllOrderByNumberOfVote();
         return $this->render('@App/ideas.html.twig', compact("ideas"));
     }
 

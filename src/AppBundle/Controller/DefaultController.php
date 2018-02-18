@@ -26,7 +26,6 @@ class DefaultController extends Controller
      * @Route("/test")
      */
     public function test(VoteService $voteService, IdeaService $ideaService){
-
-        dump($voteService->vote($ideaService->getById(35), $this->getUser(), true));die;
+        return null;
     }
 }
